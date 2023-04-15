@@ -1,0 +1,73 @@
+body {
+    align-items: center;
+    justify-content: center;
+}
+
+table {
+    background-color: #15172b;
+    border-radius: 20px;
+    color:white;
+    text-align: center;
+    box-sizing: border-box;
+    padding: 20px;
+    width: 50%;
+}
+table tr th{
+    background-color: red;
+    height:30px;
+}
+tr {
+    color: black;
+
+    background-color: #808097;
+}
+tr:nth-child(even) {
+    color: white;
+
+    background-color:#303245;
+
+}
+.Buttons{
+    float:right;
+    height:30px;
+    margin: 2%;
+    grid-gap: 3rem;
+}
+.ButtonList{
+    float:right;
+    height:30px;
+    margin: 2%;
+    grid-gap: 3rem;
+}
+a{
+   text-decoration: none;
+}
+
+.MessageAddB {
+    cursor:pointer;
+    margin-left:-20%;
+
+}
+.MessagechangeV {
+    cursor:pointer;
+    margin-left:-20%;
+}
+
+.DelButton{
+    text-decoration: none;
+    color:darkred;
+}
+.DelButton:hover {
+    color: white;
+}
+a{
+    text-decoration: none;
+    color:black
+}
+#ActivitySec{
+    float:right;
+    width: 40%;
+    position: absolute;
+    top:30%;
+    right:0;
+}

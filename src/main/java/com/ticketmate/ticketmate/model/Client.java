@@ -1,0 +1,85 @@
+package com.ticketmate.ticketmate.model;
+
+import jakarta.persistence.*;
+import org.springframework.web.multipart.MultipartFile;
+
+@Entity
+@Table(name = "Clients")
+
+public class Client {
+@jakarta.persistence.Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long idCLient;
+    private String NomClient;
+    private String EmailClient ;
+    private String Password;
+    private String Bio;
+    private String City;
+
+    public String getCity() {
+        return City;
+    }
+
+    public void setCity(String city) {
+        City = city;
+    }
+
+    @Column(nullable = true, length = 64)
+    private String photos;
+
+    public String getBio() {
+        return Bio;
+    }
+
+    public void setBio(String bio) {
+        Bio = bio;
+    }
+
+    public long getIdCLient() {
+
+        return idCLient;
+    }
+
+
+
+    public Client setIdCLient(long idCLient) {
+        this.idCLient = idCLient;
+        return this;
+    }
+
+    public String getNomClient() {
+        return NomClient;
+    }
+
+    public void setNomClient(String nomClient) {
+        NomClient = nomClient;
+    }
+
+    public String getEmailClient() {
+        return EmailClient;
+    }
+
+    public void setEmailClient(String emailClient) {
+        EmailClient = emailClient;
+    }
+
+    public String getPassword() {
+        return Password;
+    }
+
+    public void setPassword(String password) {
+        Password = password;
+    }
+
+    public String getPhotos() {
+        return photos;
+    }
+
+    public void setPhotos(String photos) {
+        this.photos = photos;
+    }
+
+
+
+
+}
+

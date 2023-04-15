@@ -1,0 +1,264 @@
+*{
+    margin:0
+}
+@font-face {
+    font-family: inconsolata;
+    src: url("../assets/fonts/Inconsolata-VariableFont_wdth,wght.ttf");
+}
+a{
+    text-decoration: none;
+    color: black;
+}
+/* Mobile */
+@media screen and (min-width: 280px) and (max-width: 1080px) {
+    body{
+        overflow: hidden;
+        font-family:"inconsolata" ;
+
+    }
+    .title,.subt{
+        display: none;
+    }
+    .FullLogoImg{
+        width:70%;
+        margin-top: 20%;
+        margin-left: 17%;
+    }
+    .subTitle{
+        color:white;
+        font-size: 20px;
+        margin-top: 1%;
+        word-spacing: 5px;
+    }
+    .subTitleImg{
+        color:white;
+        font-size: 20px;
+        text-align: center;
+        margin-top: 1%;
+        word-spacing: 5px;
+    }
+    .BackgroundImage{
+        width:40%;
+        height: 100vh;
+        float:left;
+        margin-right:4%;
+        background-size: cover;
+        background-repeat: no-repeat;
+        display:none;
+    }
+    .LoginForm{
+        padding-Top:20px;
+        text-align:start;
+        float:right;
+        width:100%;
+        height: 100vh;
+        color:white;
+        background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url("../assets/images/LoginImage.jpeg"),no-repeat;
+    }
+    .box{
+        background-color: white;
+        width:80%;
+        padding: 2%;
+        margin:10%;
+        /*height:50vh;*/
+        border-radius: 1em;
+    }
+    .ButtonSignIn{
+        width: 95%;
+        background: black;
+        color: white;
+        margin-left:2%;
+        height: 40px;
+        margin-right:20%;
+        margin-bottom:3%;
+        border: none;
+        border-radius: 30px;
+        font-size: 15px;
+        font-family: "inconsolata";
+        font-weight: bold;
+        cursor: pointer;
+        position: relative;
+        z-index: 1;
+        overflow: hidden;
+    }
+    .SignInWGoogle{
+        display: none;
+    }
+    .Input{
+        outline:none;
+        width: 90%;
+        height:20px;
+        border:none;
+        font-size: 20px;
+        border-bottom: 2px solid black;
+        margin-top: 6%;
+        margin-bottom: 10%;
+    }.InputP{
+         outline:none;
+         width: 90%;
+         height:20px;
+         border:none;font-size: 20px;
+         border-bottom: 2px solid black;
+         margin-bottom: 2%;
+     }
+     .RecoverPassword{
+         display: none;
+     }
+     .RegMessage{
+         color: #828282;
+         font-size: 15px;
+         text-align: center;
+     }
+     .Checkb{
+         display: none;
+     }
+.permanentTitle{
+    color:black;
+    margin-left: 2%;
+    margin-top: 2%;
+    margin-bottom: 5%;
+}
+}
+
+
+
+
+/* WEB */
+@media screen and (min-width: 1080px) {
+    body{
+        font-family: "inconsolata";
+    }
+    .BackgroundImage{
+        width:45%;
+        height: 100vh;
+        background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url("../assets/images/LoginImage.jpeg"),no-repeat;
+        float:left;
+        background-size: cover;
+        text-align: center;
+        font-family: "inconsolata";
+        opacity: 0.7;
+    }
+    .LoginForm{
+        padding-Top:20px;
+        text-align:start;
+        font-size:20px;
+        float:right;
+        width:50%;
+        font-family:"inconsolata" ;
+    }
+    .FullLogo{
+        width:60%;
+        margin-top: 10%;
+    }
+    .FullLogoImg,.subTitleImg{
+        display: none;
+    }
+    .subTitle{
+        color:white;
+        font-size: 20px;
+        margin-top: 1%;
+        word-spacing: 5px;
+    }
+    .Socials{
+        position: absolute;
+        bottom:0;
+        left:15%;
+        color:white
+
+    }
+    .ButtonSignIn{
+        width:40%;
+        background: black;
+        color: white;
+        border: none;
+        border-radius: 0.625em;
+        font-size: 15px;
+        font-family: "inconsolata";
+        font-weight: bold;
+        cursor: pointer;
+        position: relative;
+        z-index: 1;
+        overflow: hidden;
+    }
+    .ButtonSignIn:hover {
+        color: black;
+    }
+
+    .ButtonSignIn:after {
+        content: "";
+        background: grey;
+        position: absolute;
+        z-index: -1;
+        left: -20%;
+        right: -20%;
+        top: 0;
+        bottom: 0;
+        transform: skewX(-45deg) scale(0, 1);
+        transition: all 0.5s;
+    }
+
+    .ButtonSignIn:hover:after {
+        transform: skewX(-45deg) scale(1, 1);
+        -webkit-transition: all 0.5s;
+        transition: all 0.5s;
+    }
+
+    .SignInWGoogle{
+        background-color: lightgrey;
+        width:40%;
+        margin-left: 2%;
+        color: black;
+        padding:2%;
+        font-family: "inconsolata";
+        border-radius: 0.625em;
+        border:none;
+        cursor: not-allowed;
+    }
+    .RegMessage{
+        margin-top: 20%;
+        font-size: 20px;
+    }
+    a{
+        text-decoration: none;
+        color:black
+    }
+    .RecoverPassword{
+        float:right;
+        margin-right:2%;
+        margin-top: 2%;
+    }
+    .Input{
+        outline:none;
+        width: 80%;
+        height:30px;
+        border:none;
+        font-size: 20px;
+        border-bottom: 2px solid black;
+        margin-top: 6%;
+        margin-bottom: 4%;
+    }.InputP{
+         outline:none;
+         width: 80%;
+         height:30px;
+         border:none;
+         font-size: 20px;
+         border-bottom: 2px solid black;
+         margin-bottom: 2%;
+     }
+    .Checkb{
+        margin-top: 2%;
+    }
+    .Buttons{
+        display: flex;
+        margin-top:7%;
+        width:90%;
+    }
+    .Link{
+        color:red;
+        text-decoration: underline;
+    }
+    .permanentTitle{
+        display: none;
+    }
+}
+
