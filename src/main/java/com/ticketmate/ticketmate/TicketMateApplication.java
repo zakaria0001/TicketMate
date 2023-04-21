@@ -8,7 +8,7 @@ import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfi
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
-@EntityScan(basePackages = {"com.ticketmate.ticketmate.*"})
+@EntityScan(basePackages = {"com.ticketmate.ticketmate.model"})
 @ComponentScan(basePackages = {"com.ticketmate.ticketmate.*"})
 @SpringBootApplication(exclude = { SecurityAutoConfiguration.class })
 

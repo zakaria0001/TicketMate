@@ -15,6 +15,9 @@
     <h1 class='subTitle'>Turning travel passions <br/> into travel plans ! </h1>
     <div class='Socials'>
         <h1>Follow Us :</h1>
+        <a href="#"><img src="assets/Logo/icons8-instagram-48%201.png" /></a>
+        <a href="#"><img src="assets/Logo/icons8-instagram-48%202.png" /></a>
+        <a href="#"> <img src="assets/Logo/icons8-twitter-48%201.png" /></a>
 
     </div>
 </section>
@@ -29,9 +32,9 @@
     <div class="box">
         <h1 class="permanentTitle">Login</h1>
         <form method="POST" action="/Login">
-            <input class="Input"  type="email" name="Email" placeholder='Enter Your Email ...'/>
+            <input class="Input"   name="email_client" placeholder='Enter Your Email ...'/>
             <br/>
-            <input class="InputP" type="password" name="Password" placeholder='Enter Your Password ...'/>
+            <input class="InputP" type="Password" name="Password" placeholder='Enter Your Password ...'/>
             <br/>
             <tr>
                 <td >
@@ -48,6 +51,7 @@
             </tr>
             <tr>
                 <td><h2 class="RegMessage">Don't Have an account ? <a href="/Register" class="Link">Register Here !</a></h2></td>
+            ${output==null?"Null":output}
             </tr>
         </form>
 

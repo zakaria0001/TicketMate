@@ -7,10 +7,16 @@ import org.springframework.web.multipart.MultipartFile;
 @Table(name = "Clients")
 
 public class Client {
-@jakarta.persistence.Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    public Client() {}
+
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long idCLient;
     private String NomClient;
-    private String EmailClient ;
+    @Column(nullable = true, length = 64)
+
+    private String email_client ;
+    @Column(nullable = true, length = 64)
+
     private String Password;
     private String Bio;
     private String City;
@@ -55,11 +61,11 @@ public class Client {
     }
 
     public String getEmailClient() {
-        return EmailClient;
+        return email_client;
     }
 
     public void setEmailClient(String emailClient) {
-        EmailClient = emailClient;
+        email_client = emailClient;
     }
 
     public String getPassword() {

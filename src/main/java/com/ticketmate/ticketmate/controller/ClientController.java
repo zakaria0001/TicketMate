@@ -27,9 +27,6 @@ import java.io.IOException;
 @Configuration
 @RestController
 public class ClientController {
-
-
-
      SessionFactory sessionFactory;
 
     public ClientController(ClientRepository repository) {
@@ -48,11 +45,7 @@ public class ClientController {
     @Autowired
     private ClientService clientService;
     private static Logger log = LogManager.getLogger(ClientService.class);
-//    @Autowired
-//    public ClientController(ClientRepository repository, ClientService clientService) {
-//        this.repository = repository;
-//        this.clientService = clientService;
-//    }
+
     @RequestMapping("/")
     public ModelAndView Home( Model model) {
         return new ModelAndView("Login.jsp");
@@ -80,20 +73,20 @@ public class ClientController {
     }
 
     @RequestMapping(value="/Login", method = RequestMethod.POST)
-    public ModelAndView login(@RequestParam("Email")String username, @RequestParam("Password")String password){
+    public ModelAndView login(@RequestParam("email_client")String username, @RequestParam("Password")String password){
         String msg = "";
         boolean isValid = clientService.findUser(username, password);
         log.info("Is user valid?= " + isValid);
 
         if(isValid) {
             msg = "Welcome " + username + "!";
+            return new ModelAndView("/Home","output",msg);
+
         } else {
             msg = "Invalid credentials";
+            return new ModelAndView("/","output",msg);
+
         }
-
-        return new ModelAndView("/Home","output",msg);
-//        return new ModelAndView("redirect:/Home");
-
     }
 
 
