@@ -26,6 +26,7 @@
 </nav>
 
 <div class= 'container'>
+    <h2 style="color:red">${output}</h2>
     <section id= 'Dashboard'>
         <input class="SearchInput" placeholder="Search For a Destination ....." type="text"/>
         <aside>

@@ -80,10 +80,10 @@ public class ClientController {
 
         if(isValid) {
             msg = "Welcome " + username + "!";
-            return new ModelAndView("/Home","output",msg);
+            return new ModelAndView("redirect:/Home","output",msg);
 
         } else {
-            msg = "Invalid credentials";
+            msg = "Email Or Password Invalid";
             return new ModelAndView("/","output",msg);
 
         }
