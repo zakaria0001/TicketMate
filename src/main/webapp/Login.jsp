@@ -5,7 +5,7 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-
+    <link rel="icon" type="image/x-icon" href="assets/Logo/SmallLogo.png">
     <link rel="stylesheet" href="style/login.css">
     <title>Login -  TicketMate</title>
 </head>
@@ -28,7 +28,7 @@
 
     <img src="assets/Logo/logo-no-background.png"  class='FullLogoImg'/>
     <h1 class='subTitleImg'>Turning travel passions <br/> into travel plans ! </h1>
-
+        ${reqParam}
     <div class="box">
         <h1 class="permanentTitle">Login</h1>
         <form method="POST" action="/Login">
@@ -51,7 +51,7 @@
             </tr>
             <tr>
                 <td><h2 class="RegMessage">Don't Have an account ? <a href="/Register" class="Link">Register Here !</a></h2></td>
-            ${output==null?"Null":output}
+                <td><h4>${output==null?"":output}</h4></td>
             </tr>
         </form>
 
@@ -59,3 +59,9 @@
 </section>
 </body>
 </html>
+<script>
+    window.history.pushState(null, null, window.location.href);
+    window.onpopstate = function () {
+        window.history.go(1);
+    };
+</script>

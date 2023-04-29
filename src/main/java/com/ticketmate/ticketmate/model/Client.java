@@ -4,13 +4,13 @@ import jakarta.persistence.*;
 import org.springframework.web.multipart.MultipartFile;
 
 @Entity
-@Table(name = "Clients")
 
 public class Client {
     public Client() {}
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long idCLient;
+
     private String NomClient;
     @Column(nullable = true, length = 64)
 
@@ -86,6 +86,7 @@ public class Client {
 
 
 
-
+    @OneToOne(mappedBy = "idClient")
+    private Billet idClient;
 }
 

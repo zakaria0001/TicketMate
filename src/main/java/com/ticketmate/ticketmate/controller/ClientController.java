@@ -1,5 +1,7 @@
 package com.ticketmate.ticketmate.controller;
 
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 import com.ticketmate.ticketmate.FileUploadUtil;
 import com.ticketmate.ticketmate.model.Client;
 import com.ticketmate.ticketmate.repository.ClientRepository;
@@ -11,6 +13,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.util.StringUtils;
@@ -25,7 +28,7 @@ import org.springframework.web.servlet.view.RedirectView;
 
 import java.io.IOException;
 @Configuration
-@RestController
+@Controller
 public class ClientController {
      SessionFactory sessionFactory;
 
@@ -73,20 +76,27 @@ public class ClientController {
     }
 
     @RequestMapping(value="/Login", method = RequestMethod.POST)
-    public ModelAndView login(@RequestParam("email_client")String username, @RequestParam("Password")String password){
+    public String login(@RequestParam("email_client")String username,ModelMap model,RedirectAttributes redirectAttributes, @RequestParam("Password")String password,HttpServletRequest request){
         String msg = "";
         boolean isValid = clientService.findUser(username, password);
         log.info("Is user valid?= " + isValid);
 
         if(isValid) {
-            msg = "Welcome " + username + "!";
-            return new ModelAndView("redirect:/Home","output",msg);
+            msg = username;
+            request.setAttribute("reqParam", msg);
+            return "/Home#Dashboard";
 
         } else {
             msg = "Email Or Password Invalid";
-            return new ModelAndView("/","output",msg);
-
+            request.setAttribute("output", msg);
+            return "/";
         }
+    }
+    @RequestMapping("/logout")
+    public String LogoutController(HttpSession session) {
+            session.invalidate();
+            return "redirect:/";
+
     }
 
 

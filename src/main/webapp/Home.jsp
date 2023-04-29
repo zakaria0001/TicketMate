@@ -1,6 +1,8 @@
+<%@ page import="java.sql.*" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!doctype html>
 <html lang="en">
+<% if(request.getAttribute("reqParam")!=null){%>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
@@ -22,28 +24,76 @@
     <a href="#Locations"><img src="assets/images/Locations_icon.png"/></a>
     <a href="#History"><img src="assets/images/Command_History.png"/></a>
     <hr>
-    <a href="/"><img src="assets/images/Profil_icon.png"/></a>
+    <a href="/logout"><img src="assets/images/Profil_icon.png"/></a>
 </nav>
 
 <div class= 'container'>
-    <h2 style="color:red">${output}</h2>
     <section id= 'Dashboard'>
-        <input class="SearchInput" placeholder="Search For a Destination ....." type="text"/>
-        <aside>
-            <div id="calendar"></div>
-            <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.5.1/moment.min.js"></script>
-        </aside>
+<input class="SearchInput" placeholder="Search For a Destination ....." type="text"/>
+    <%
+       String connectionURL = "jdbc:mysql://localhost:3307/TicketMate";
+        Connection connection = null;
+        Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
+        connection = DriverManager.getConnection(connectionURL, "root", "");
+    %>
+    <%if(!connection.isClosed())
+    %>
 
+        <%
+            String sqlQuery = "select nom_client , bio from client c where email_client=?";
+
+            PreparedStatement psGetUsername = connection.prepareStatement(sqlQuery);
+            psGetUsername.setString(1,String.valueOf(request.getAttribute("reqParam")));
+            ResultSet rsusername = psGetUsername.executeQuery();
+            try {
+            while(rsusername.next()){%>
+                    <a href="Login.jsp">   <h2 id="currentUsername"><%=rsusername.getString("nom_client")%></h2></a>
+    <%
+            }
+                }catch (SQLException e) {
+                  System.out.println("Error During Getting Values");
+                }
+
+           %>
+
+        <div>
+            <h3>Deal of the Day ! </h3>
+            <%
+                String OffresList = " ";
+
+                Statement psListOffres = connection.createStatement();
+                ResultSet rsListeOffres = psListOffres.executeQuery("select * from offres");
+                while(rsListeOffres.next()){
+
+                    PreparedStatement psVille = connection.prepareStatement("select designation,photo_ville from villes where id_ville=?");
+                    psVille.setInt(1,Integer.parseInt(rsListeOffres.getString("ville_offre")));
+                    ResultSet rsVilleDetail = psVille.executeQuery();
+                    while(rsVilleDetail.next()){
+            %>
+            <div class="card" style="width: 18rem;">
+                <img src="../../../user-photos/3/<%=rsVilleDetail.getString("photo_ville")%>" class="card-img-top" >
+                <div class="card-body">
+                    <h5 class="card-title"><%=rsVilleDetail.getString("designation")%></h5>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    <a href="#" class="btn btn-primary"><%=rsVilleDetail.getString("photo_ville")%></a>
+
+                </div>
+            </div>
+<%
+        }
+    }
+%>
+        </div>
 
     </section>
-
     <section id= 'Locations'>
         <div class="card" style="width: 18rem;">
-            <img src="..." class="card-img-top" alt="...">
+            <img src="../user-photos/1/quiz-app-flags-logo.png" class="card-img-top" >
             <div class="card-body">
                 <h5 class="card-title">Card title</h5>
                 <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
                 <a href="#" class="btn btn-primary">Go somewhere</a>
+
             </div>
         </div>
     </section>
@@ -57,4 +107,12 @@
     </section>
 </div>
 </body>
+<%
+    }else{
+        request.getServletContext().getRequestDispatcher("/").forward(request, response);
+    }
+%>
 </html>
+<script>
+
+</script>

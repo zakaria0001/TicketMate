@@ -28,7 +28,7 @@ public class ClientService {
 
 
     public boolean findUser(String email, String pwd) {
-        sessionFactory = new Configuration().configure("hibernate.cfg.xml").buildSessionFactory();
+        sessionFactory = new Configuration().configure().buildSessionFactory();
 
         Session session = sessionFactory.openSession();
 

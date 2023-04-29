@@ -15,6 +15,10 @@
     <h1 class='subTitle'>Turning travel passions <br/> into travel plans ! </h1>
     <div class='Socials'>
         <h1>Follow Us :</h1>
+        <a href="#"><img src="assets/Logo/icons8-instagram-48%201.png" /></a>
+        <a href="#"><img src="assets/Logo/icons8-instagram-48%202.png" /></a>
+        <a href="#"> <img src="assets/Logo/icons8-twitter-48%201.png" /></a>
+
     </div>
 </section>
 
@@ -62,3 +66,9 @@
 </section>
 </body>
 </html>
+<script>
+    window.history.pushState(null, null, window.location.href);
+    window.onpopstate = function () {
+        window.history.go(1);
+    };
+</script>

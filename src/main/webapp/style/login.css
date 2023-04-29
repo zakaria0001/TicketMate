@@ -260,5 +260,8 @@ a{
     .permanentTitle{
         display: none;
     }
+    center {
+        color:red
+    }
 }
 
