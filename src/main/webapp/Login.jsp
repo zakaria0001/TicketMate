@@ -28,7 +28,7 @@
 
     <img src="assets/Logo/logo-no-background.png"  class='FullLogoImg'/>
     <h1 class='subTitleImg'>Turning travel passions <br/> into travel plans ! </h1>
-        ${reqParam}
+
     <div class="box">
         <h1 class="permanentTitle">Login</h1>
         <form method="POST" action="/Login">

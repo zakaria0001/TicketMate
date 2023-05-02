@@ -19,6 +19,7 @@
     <mapping class="com.ticketmate.ticketmate.model.Agence" />
     <mapping class="com.ticketmate.ticketmate.model.Ville" />
     <mapping class="com.ticketmate.ticketmate.model.Offre" />
+    <mapping class="com.ticketmate.ticketmate.model.Note" />
 
   </session-factory>
 </hibernate-configuration>

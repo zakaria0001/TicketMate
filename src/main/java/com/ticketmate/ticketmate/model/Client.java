@@ -88,5 +88,8 @@ public class Client {
 
     @OneToOne(mappedBy = "idClient")
     private Billet idClient;
+
+    @OneToOne(mappedBy = "idClientN")
+    private Note idClientN;
 }
 

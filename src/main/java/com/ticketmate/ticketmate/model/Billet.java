@@ -23,6 +23,9 @@ public class Billet {
 
     private double prix ;
 
+    private String DateDepart;
+    private int Duree;
+
     public long getIdBillet() {
         return idBillet;
     }

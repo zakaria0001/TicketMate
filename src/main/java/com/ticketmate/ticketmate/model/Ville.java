@@ -17,12 +17,13 @@ public class Ville {
         Designation = designation;
     }
 
-    public String getPhotoVille() {
-        return PhotoVille;
+
+    public byte[] getImage() {
+        return image;
     }
 
-    public void setPhotoVille(String photoVille) {
-        PhotoVille = photoVille;
+    public void setImage(byte[] image) {
+        this.image = image;
     }
 
     @Id
@@ -31,8 +32,9 @@ public class Ville {
 
     private String Designation;
 
-    @Column(nullable = true, length = 64)
-    private String PhotoVille;
+    @Lob
+    @Column (name = "image")
+    private byte[] image;
 
 
     @OneToOne(mappedBy = "VilleOffre")
