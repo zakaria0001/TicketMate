@@ -49,8 +49,15 @@
 
 <div class= 'container'>
     <section id= 'Dashboard'>
-<input class="SearchInput" placeholder="Search For a Destination ....." type="text"/>
-    <%
+<%--<input  placeholder="Search For a Destination ....." onkeyup="searchInfo()" type="text"/>--%>
+
+
+        <form name="vinform">
+            <input placeholder="Search For a Destination ....." class="SearchInput" type="text" name="name" onkeyup="searchInfo()">
+        </form>
+
+        <div id="mylocation"></div>
+        <%
        String connectionURL = "jdbc:mysql://localhost:3307/TicketMate";
         Connection  connection = null;
         Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
@@ -60,7 +67,6 @@
     %>
 
         <%
-
             String sqlQuery = "select nom_client , bio ,idclient from client c where email_client=?";
 
             PreparedStatement psGetUsername = connection.prepareStatement(sqlQuery);
@@ -131,12 +137,10 @@
     }
 %>
         </div>
-        <div style="margin-top:4%">
+        <div style="margin-top:3%">
             <h3>Best Destinations : <a class="link" href="#Locations"><h6>Explore More : </h6></a> </h3>
 
             <div class="box" >
-
-
             <%
                 Statement psListOffress = connection.createStatement();
 
@@ -187,7 +191,7 @@
 
             <div id='calendar' ></div>
         </div>
-        <div style="float: right;border:2px solid black;border-radius:20px;background-color:#DEDEDE;width:35%;margin-top: -13%;margin-right: 1.5%;max-height:300px">
+        <div id="Notes">
             <h2 style="color:black;background-color: white;border-top-left-radius: 18px;border-top-right-radius: 18px;text-align: center">Notes : <label style="font-weight: bolder;float: right;margin-right: 1%">+</label></h2>
             <%
                 PreparedStatement psNotes = connection.prepareStatement("select * from notes where id_clientn=? and DATE(date_note) >= CURRENT_DATE() LIMIT 2 ");
@@ -337,14 +341,67 @@
         %>
         <h2 class="title">My Profile :</h2>
         <div id="container">
+
            <div class="upperInfo">
                <img id="ProfilePicture"  src="data:image/jpg;base64,<%=ProfilePicture%>"/>
-               <div class="PersonaleInfo">
+               <div class="PersonalInfo">
                  <h1><%=session.getAttribute("username")%></h1>
-                 <h3><%=rsuserInfo.getString("bio")%></h3>
+                 <h4><%=rsuserInfo.getString("bio")%></h4>
+                 <h4><%=rsuserInfo.getString("city")%></h4>
+                   <button class="LogOutButton"><a href="/logout">Logout</a></button>
                </div>
            </div>
-        </div>
+            <div class="DetailledInfo">
+                <button id="editButton" onclick="myFunction()"><a>Edit</a></button>
+                <h1>Personal Information : </h1>
+                <table id="UserInfosShow">
+                    <tr>
+                        <td>
+                            <h4>Full Name :</h4>
+                            <h3><%=rsuserInfo.getString("nom_client")%></h3>
+                        </td>
+                        <td>
+                            <h4>Email Adress : </h4>
+                            <h3><%=rsuserInfo.getString("email_client")%></h3>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <h4>Bio :</h4>
+                            <h3><%=rsuserInfo.getString("bio")%></h3>
+                        </td>
+                        <td>
+                            <h4>Password :</h4>
+                            <input  type="password" value="<%=rsuserInfo.getString("password")%>"/>
+                        </td>
+                    </tr>
+                </table>
+                <table id="UpdatableTable">
+                    <tr>
+                        <td>
+                            <h4>Full Name :</h4>
+                            <input  type="text"value="<%=rsuserInfo.getString("nom_client")%>"/>
+                        </td>
+                        <td>
+                            <h4>Email Adress : </h4>
+                            <input type="text"  value="<%=rsuserInfo.getString("email_client")%>">
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <h4>Bio :</h4>
+                            <input type="text" value="<%=rsuserInfo.getString("bio")%>">
+
+                        </td>
+                        <td>
+                            <h4>Password :</h4>
+                            <input  type="password" value="<%=rsuserInfo.getString("password")%>"/>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            </div>
         <%
             }
         %>
@@ -358,5 +415,42 @@
 %>
 </html>
 <script>
+    function myFunction() {
+        var x = document.getElementById("UserInfosShow");
+        var y = document.getElementById("UpdatableTable");
 
+        if (x.style.display === "table") {
+            x.style.display="none";
+            y.style.display = "table";
+            y.style.width="90%";
+
+        } else {
+            x.style.display = "table";
+            x.style.width="90%";
+            y.style.display = "none";
+        }
+
+
+    }
+
+</script>
+<script src="../style/jquery.js"></script>
+<script>
+
+    var request=new XMLHttpRequest();
+    function searchInfo(){
+        var name=document.vinform.name.value;
+        var url="Result.jsp?val="+name;
+
+        try{
+            request.onreadystatechange=function(){
+                if(request.readyState==4){
+                    var val=request.responseText;
+                    document.getElementById('mylocation').innerHTML=val;
+                }
+            }//end of function
+            request.open("GET",url,true);
+            request.send();
+        }catch(e){alert("Unable to connect to server");}
+    }
 </script>

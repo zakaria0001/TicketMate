@@ -45,6 +45,8 @@ body {
     }
 
     section {
+        font-family: Montserrat, sans-serif;
+
         top: 0;
         width:81%;
         color: #191919;
@@ -80,7 +82,6 @@ body {
         height:40px;
         background-color:#D9D9D9 ;
         border:none;
-        border-radius: 30px;
         outline: none;
         font-size: 15px;
         padding-left: 2%;
@@ -107,6 +108,7 @@ body {
     }
 
     #Profile {
+        font-family: Montserrat, sans-serif;
         background: var(--primary-color);
     }
 
@@ -242,12 +244,95 @@ body {
         display: inline-flex;
         width: 100%;
     }
-    #ProfilePicture{
-        width: 10%;
-        border-radius: 50%;
+
+    .DetailledInfo{
+        border: 2px solid;
+        border-radius: 30px;
+        padding:1%;
+        margin-top: 2%;
+
+
+
+        width:100%;
+    }
+    .DetailledInfo table{
+        margin-left:2%;
+        width: 90%;
+
     }
 
+    .DetailledInfo table td h4{
+        text-align: start;
 
+    }
+    .DetailledInfo table td h3{
+            color: black;
 
+    }
+    #ProfilePicture{
+        width: 10%;
+        margin-right: 1%;
+        border-radius: 50%;
+    }
+    .PersonalInfo{
+        width: 100%;
+    }
+    .LogOutButton{
+        background-color: #BF2051;
+        float: right;
+        padding:1%;
+        width: 18%;
+        border:none;
+        border-radius: 10px;
+    }
+    .LogOutButton a{
+        color: black;
+        text-decoration: none;
+        font-weight: bold;
+    }
+#Notes{
+    float: right;
+    border:2px solid black;
+    border-radius:20px;
+    background-color:#DEDEDE;
+    width:35%;
+    position: absolute;
+    bottom: 4%;
+    right: 1%;
+    max-height:300px
+}
+#editButton{
+    float: right;
+    border:none;
+    border-radius:10px;
+    width:10%;
+    padding: 1%;
+    background-color: darkgrey;
+}
 
+#editButton a{
+    font-weight: bold;
+}#editButton:hover{
+    box-shadow: 2px 2px 2px 2px black;
+
+}
+
+ #UpdatableTable{
+     display: none;
+
+ }
+
+ #mylocation{
+
+     margin: 2% 4%;
+     margin-top: -3%;
+     width: 25%;
+
+     background-color:#D9D9D9 ;
+     border:none;
+
+     outline: none;
+     font-size: 15px;
+     padding: 1%;
+ }
 }

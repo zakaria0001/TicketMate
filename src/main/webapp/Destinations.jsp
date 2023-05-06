@@ -29,7 +29,7 @@
     <a href="/Home#Locations"><img src="../assets/images/Locations_icon.png"/></a>
     <a href="/Home#History"><img src="../assets/images/Command_History.png"/></a>
     <hr>
-    <a href="/logout"><img src="../assets/images/Profil_icon.png"/></a>
+    <a href="/Home#Profile"><img src="../assets/images/Profil_icon.png"/></a>
 </nav>
 <a href="Login.jsp">   <h2 class="currentUsername"><%=session.getAttribute("username")%></h2></a>
 
