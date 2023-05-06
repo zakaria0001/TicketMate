@@ -20,6 +20,9 @@ public class Client {
     private String Password;
     private String Bio;
     private String City;
+    @Lob
+    @Column (name = "ProfilePic",columnDefinition = "LONGBLOB")
+    private byte[] Logo;
 
     public String getCity() {
         return City;
@@ -29,8 +32,7 @@ public class Client {
         City = city;
     }
 
-    @Column(nullable = true, length = 64)
-    private String photos;
+
 
     public String getBio() {
         return Bio;
@@ -76,18 +78,30 @@ public class Client {
         Password = password;
     }
 
-    public String getPhotos() {
-        return photos;
+
+    public String getEmail_client() {
+        return email_client;
     }
 
-    public void setPhotos(String photos) {
-        this.photos = photos;
+    public void setEmail_client(String email_client) {
+        this.email_client = email_client;
     }
 
+    public byte[] getLogo() {
+        return Logo;
+    }
 
+    public void setLogo(byte[] logo) {
+        Logo = logo;
+    }
 
-    @OneToOne(mappedBy = "idClient")
-    private Billet idClient;
+    public Note getIdClientN() {
+        return idClientN;
+    }
+
+    public void setIdClientN(Note idClientN) {
+        this.idClientN = idClientN;
+    }
 
     @OneToOne(mappedBy = "idClientN")
     private Note idClientN;

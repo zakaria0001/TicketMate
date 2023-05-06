@@ -25,6 +25,8 @@ a{
 nav {
     position: fixed;
     display: flex;
+    width:7%;
+
     left: 0;
     z-index: 50;
     justify-content: space-around;
@@ -48,10 +50,94 @@ nav {
     padding: 3%;
 }
 
-#container h1 {
-    color: #fff;
-    font-size: 50px;
-    text-transform: uppercase;
-    opacity: 0;
-    text-align: center;
+
+
+#LeftP{
+    width: 30%;
+    margin-right: 3%;
+    height: fit-content;
 }
+#RightP{
+    width: 100%;
+    text-align: start;
+    marging-left: 4%;
+}
+#offerImage{
+    width: 100%;
+    border-radius: 30px;
+}
+#divs{
+    width: 100%;
+    margin-bottom: 3%;
+}
+#divs p{
+    color: #BF2051;
+}
+#orderButton{
+    background-color: #BF2051;
+    color: white;
+    border-radius:30px;
+    margin-top: 5%;
+    width: 30%;
+    font-size: 20px;
+    padding:3%;
+    text-align: center;
+    align-items: center;
+    align-content: center;
+    border:none;
+    cursor : pointer;
+}
+br{
+height: 20px}
+#Details{
+    display: none;
+    margin-top: 10%;
+    border-radius: 30px;
+    padding:1%;
+    height:fit-content ;
+    background-color: #DEDEDE;
+}
+#Details form{
+    padding: 3%;
+    height:fit-content ;
+    background-color: #DEDEDE;
+}
+
+#Details table{
+width: 100%;
+}
+#Details input{
+    width: 80%;
+    height: 30px;
+    outline: none;
+
+}
+#Details select{
+    width:80%;
+    height:30px
+}
+.BookB{
+    width:95%;
+    margin-top: 2%;
+    height: 40px;
+    border:none;
+    background-color: #BF2051;
+    color: white;
+    border-radius: 30px;
+    font-size: unset;
+}.BookB:hover{
+    width:95%;
+    margin-top: 2%;
+    height: 40px;
+    border:none;
+    background-color: white;
+    color:#BF2051 ;
+     cursor: pointer;
+    border-radius: 30px;
+    font-size: unset;
+}
+ .message{
+     text-align: center;
+     margin: 2%;
+     color: red;
+ }

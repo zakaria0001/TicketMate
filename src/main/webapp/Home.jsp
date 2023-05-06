@@ -44,7 +44,7 @@
     <a href="#Locations"><img src="assets/images/Locations_icon.png"/></a>
     <a href="#History"><img src="assets/images/Command_History.png"/></a>
     <hr>
-    <a href="/logout"><img src="assets/images/Profil_icon.png"/></a>
+    <a href="#Profile"><img src="assets/images/Profil_icon.png"/></a>
 </nav>
 
 <div class= 'container'>
@@ -73,7 +73,7 @@
                 session.setAttribute("username",rsusername.getString("nom_client"));
         %>
 
-                    <a href="Login.jsp">   <h2 id="currentUsername"><%=rsusername.getString("nom_client")%></h2></a>
+                    <a href="/logout">   <h2 class="currentUsername"><%=rsusername.getString("nom_client")%></h2></a>
         <%
             }
                 }catch (SQLException e) {
@@ -115,13 +115,16 @@
 
             %>
             <div class="card" >
+                <img id="offerImage" src="data:image/jpg;base64,<%=base64Image%>"/>
+
+                <a style="text-decoration: none;        color:#717171;
+" href="/Destination/<%=rsListeOffres.getInt("id_offre")%>">
                 <div class="card-body">
-                    <img id="offerImage" src="data:image/jpg;base64,<%=base64Image%>"/>
                     <h5 class="card-title" style="color:#BF2051;"><%=rsAgenceDetail.getString("nom_agence")%></h5>
                     <h5 class=""><%=rsVilleDetail.getString("designation")%></h5>
                     <h5 class="" style="float: right;color:#BF2051;"><b><%=rsListeOffres.getInt("prix_offre")%> DHS / J</b></h5>
-
                 </div>
+                </a>
             </div>
 <%
         }
@@ -166,9 +169,9 @@
             %>
                     <div class="cardSmall" >
                         <a style="text-decoration: none" href="/Destination/<%=rsListeDest.getInt("id_offre")%>">
+                            <img id="offerImagesSmall" src="data:image/jpg;base64,<%=base64Images%>"/>
 
                         <div class="card-bodySmall">
-                            <img id="offerImagesSmall" src="data:image/jpg;base64,<%=base64Images%>"/>
                             <h5 class="card-titleSmall" style="color:#BF2051;"><%=rsAgenceDetailsDest.getString("nom_agence")%></h5>
                             <h5 class=""><%=rsVilleDetailDest.getString("designation")%></h5>
                         </div>
@@ -184,10 +187,10 @@
 
             <div id='calendar' ></div>
         </div>
-        <div style="float: right;border:2px solid black;border-radius:20px;background-color:#DEDEDE;width:35%;margin-top: -12%;margin-right: 1.5%;max-height:300px">
-            <h2 style="color:black;background-color: white;border-top-left-radius: 18px;border-top-right-radius: 18px;text-align: center">Notes : </h2>
+        <div style="float: right;border:2px solid black;border-radius:20px;background-color:#DEDEDE;width:35%;margin-top: -13%;margin-right: 1.5%;max-height:300px">
+            <h2 style="color:black;background-color: white;border-top-left-radius: 18px;border-top-right-radius: 18px;text-align: center">Notes : <label style="font-weight: bolder;float: right;margin-right: 1%">+</label></h2>
             <%
-                PreparedStatement psNotes = connection.prepareStatement("select * from notes where id_clientn=? and DATE(date_note) >= CURRENT_DATE() LIMIT 4 ");
+                PreparedStatement psNotes = connection.prepareStatement("select * from notes where id_clientn=? and DATE(date_note) >= CURRENT_DATE() LIMIT 2 ");
                 psNotes.setInt(1,idCurrentUser);
 
                 ResultSet rsNotes = psNotes.executeQuery();
@@ -205,7 +208,9 @@
         </div>
     </section>
     <section id= 'Locations'>
-        <h3>Our Destinations :</h3>
+        <a href="Login.jsp">   <h2 class="currentUsername"><%=session.getAttribute("username")%></h2></a>
+
+        <h2 class="title">Our Destinations :</h2>
         <%
             PreparedStatement psVilleDest = connection.prepareStatement("select designation,image from villes ");
             ResultSet rsVilleDetailDest = psVilleDest.executeQuery();
@@ -227,12 +232,14 @@
         %>
 
         <div class="cardVille" style="width: 18rem; display: inline-grid;margin:0.5%;">
+            <a style="text-decoration: none" href="/Destinations/<%=rsVilleDetailDest.getString("designation")%>">
+
+            <img id="VilleImagesSmall" src="data:image/jpg;base64,<%=base64Images%>"/>
+
             <div class="card-body">
-                <img id="VilleImagesSmall" src="data:image/jpg;base64,<%=base64Images%>"/>
-
                 <h5 class="" style="color:#BF2051;"><%=rsVilleDetailDest.getString("designation")%></h5>
-
             </div>
+            </a>
         </div>
         <%
             }
@@ -240,11 +247,107 @@
     </section>
 
     <section id= 'History'>
-        <h1>Third</h1>
+        <a href="Login.jsp"><h2 class="currentUsername"><%=session.getAttribute("username")%></h2></a>
+        <h2 class="title">History :</h2>
+
+        <table>
+            <thead>
+            <tr>
+                <td>Departure</td>
+                <td>Destination</td>
+                <td>Date</td>
+                <td>Agency</td>
+                <td>Total Price</td>
+                <td>Actions </td>
+            </tr>
+            </thead>
+            <%
+                int RecordsCounter=0;
+                PreparedStatement psBilletList = connection.prepareStatement("select * from billets where id_client=?");
+                psBilletList.setInt(1,idCurrentUser);
+                ResultSet rsBilletList = psBilletList.executeQuery();
+                while(rsBilletList.next()){
+                    RecordsCounter++;
+                    PreparedStatement psAgenceDetail = connection.prepareStatement("select * from offres o join  agences a on o.id_agense=a.id_agence where o.id_offre=?");
+                    psAgenceDetail.setInt(1,rsBilletList.getInt("id_offre"));
+                    ResultSet rsAgenceDetail = psAgenceDetail.executeQuery();
+
+
+                    while(rsAgenceDetail.next()){
+                        PreparedStatement psAgenceName = connection.prepareStatement("select * from agences where id_agence=?");
+                        psAgenceName.setInt(1,rsAgenceDetail.getInt("id_agense"));
+                        ResultSet rsAgenceName = psAgenceName.executeQuery();
+
+                    PreparedStatement psAirportDepart = connection.prepareStatement("select * from aeroports where id_aeroport=?");
+                    psAirportDepart.setInt(1,rsBilletList.getInt("aeroport_depart"));
+                    ResultSet rsAirportDepart = psAirportDepart.executeQuery();
+
+                    PreparedStatement psAirportArrivee = connection.prepareStatement("select * from aeroports where id_aeroport=?");
+                    psAirportArrivee.setInt(1,rsBilletList.getInt("aeroport_arrivee"));
+                    ResultSet rsAirportArrivee = psAirportArrivee.executeQuery();
+                    while (rsAirportDepart.next() && rsAirportArrivee.next() && rsAgenceName.next()){
+            %>
+            <tbody>
+            <tr>
+                <td><%=rsAirportDepart.getString("nom_aeroport")%></td>
+                <td><%=rsAirportArrivee.getString("nom_aeroport")%></td>
+                <td><%=rsBilletList.getString("date_depart")%></td>
+                <td><%=rsAgenceName.getString("nom_agence")%></td>
+                <td style="color: #BF2051"><b><%=rsBilletList.getInt("prix")%> DHS </b></td>
+                <td style="color: #BF2051"><b><a href="/Billet/<%=rsBilletList.getInt("id_billet")%>">Delete </a></b></td>
+            </tr>
+            </tbody>
+            <%
+                        }
+                    }
+                }
+                if(RecordsCounter==0){
+                    %>
+                    <tr>
+                        <td colspan="6" style="text-align: center">No Previous Reservation</td>
+                    </tr>
+                <% } %>
+        </table>
     </section>
 
     <section id= 'Profile'>
-        <h1>Fourth</h1>
+        <a href="Login.jsp"><h2 class="currentUsername"><%=session.getAttribute("username")%></h2></a>
+        <%
+
+            String userInfo = "select * from client c where email_client=?";
+
+            PreparedStatement psGetUserInfo = connection.prepareStatement(userInfo);
+            psGetUserInfo.setString(1,String.valueOf(request.getSession().getAttribute("reqParam")));
+            ResultSet rsuserInfo = psGetUserInfo.executeQuery();
+
+                while(rsuserInfo.next()){
+                    Blob blobUserPic = rsuserInfo.getBlob("profile_pic");
+
+                    InputStream inputStreamsUser = blobUserPic.getBinaryStream();
+                    ByteArrayOutputStream outputStreamUser = new ByteArrayOutputStream();
+                    byte[] buffer = new byte[4096];
+                    int bytesReads = -1;
+
+                    while ((bytesReads = inputStreamsUser.read(buffer)) != -1) {
+                        outputStreamUser.write(buffer, 0, bytesReads);
+                    }
+
+                    byte[] imageBytes = outputStreamUser.toByteArray();
+                    String ProfilePicture = Base64.getEncoder().encodeToString(imageBytes);
+        %>
+        <h2 class="title">My Profile :</h2>
+        <div id="container">
+           <div class="upperInfo">
+               <img id="ProfilePicture"  src="data:image/jpg;base64,<%=ProfilePicture%>"/>
+               <div class="PersonaleInfo">
+                 <h1><%=session.getAttribute("username")%></h1>
+                 <h3><%=rsuserInfo.getString("bio")%></h3>
+               </div>
+           </div>
+        </div>
+        <%
+            }
+        %>
     </section>
 </div>
 </body>

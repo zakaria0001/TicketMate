@@ -59,17 +59,13 @@ public class ClientController {
         return new ModelAndView("Home.jsp");
     }
     @RequestMapping("/users/save")
-    public ModelAndView saveUser(Client client, @RequestParam("image") MultipartFile multipartFile, ModelMap model,RedirectAttributes redirectAttributes) throws IOException {
-            String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
-            client.setPhotos(fileName);
-            Client savedUser = repository.save(client);
-            String uploadDir = "user-photos/" + savedUser.getIdCLient();
-            FileUploadUtil.saveFile(uploadDir, fileName, multipartFile);
-            String FullName = savedUser.getNomClient();
-            String Bio = savedUser.getBio();
-            redirectAttributes.addFlashAttribute("FullName", FullName);
-            redirectAttributes.addAttribute("Bio", Bio);
-        return new ModelAndView("redirect:/Home");
+    public ModelAndView saveUser(Client client, @RequestParam("image") MultipartFile multipartFile, ModelMap model,RedirectAttributes redirectAttributes,HttpServletRequest request) throws IOException {
+//            String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
+//            client.setPhotos(fileName);
+            repository.save(client);
+            String FullName= client.getEmailClient();
+            request.getSession().setAttribute("reqParam", FullName);
+        return new ModelAndView("redirect:/Home#Dashboard");
     }
 
     @RequestMapping(value="/Login", method = RequestMethod.POST)
@@ -85,7 +81,7 @@ public class ClientController {
 
         } else {
             msg = "Email Or Password Invalid";
-            request.setAttribute("output", msg);
+            request.getSession().setAttribute("output", msg);
             return "redirect:/";
         }
     }

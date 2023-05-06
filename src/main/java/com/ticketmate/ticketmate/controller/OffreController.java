@@ -30,6 +30,13 @@ public class OffreController {
         request.getSession().setAttribute("idOffre",id);
         return new ModelAndView("/Destination","Credits",model);
     }
+    @RequestMapping(value="/Destinations/{Nom}",method={RequestMethod.GET})
+    public ModelAndView ListDest(@PathVariable String Nom , HttpServletRequest request){
+        request.getSession().setAttribute("NomDest" , Nom);
+        return new ModelAndView("/Destinations.jsp");
+    }
+
+
 
 
 

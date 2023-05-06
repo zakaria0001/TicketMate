@@ -17,11 +17,7 @@ public class Aeroport {
     private String Adresse;
 
 
-    @OneToOne(mappedBy = "AeroportArrivee")
-    private Billet AeroportArrivee;
 
-    @OneToOne(mappedBy = "AeroportDepart")
-    private Billet AeroportDepart;
 
 
 

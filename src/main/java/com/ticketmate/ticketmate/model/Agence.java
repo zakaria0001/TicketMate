@@ -21,6 +21,34 @@ public class Agence {
 
     private String AdresseAgence;
 
+    @Lob
+    @Column (name = "logo")
+    private byte[] Logo;
+
+    public Admin getAgence() {
+        return agence;
+    }
+
+    public void setAgence(Admin agence) {
+        this.agence = agence;
+    }
+
+    public Offre getIdAgense() {
+        return idAgense;
+    }
+
+    public void setIdAgense(Offre idAgense) {
+        this.idAgense = idAgense;
+    }
+
+    public byte[] getLogo() {
+        return Logo;
+    }
+
+    public void setLogo(byte[] logo) {
+        Logo = logo;
+    }
+
     public long getIdAgence() {
         return idAgence;
     }

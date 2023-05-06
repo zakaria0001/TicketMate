@@ -10,21 +10,54 @@ public class Billet {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long idBillet;
 
-    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "AeroportDepart", referencedColumnName = "idAeroport")
-    private Aeroport AeroportDepart;
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "AeroportArrivee", referencedColumnName = "idAeroport")
-    private Aeroport AeroportArrivee;
+    private String AeroportDepart;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "AeroportArrivee", referencedColumnName = "idAeroport")
+    private String AeroportArrivee;
+
     @JoinColumn(name = "idClient", referencedColumnName = "idCLient")
-    private Client idClient;
+    private int idClient;
+
+    @JoinColumn(name = "idOffre", referencedColumnName = "idOffre")
+    private int idOffre;
+
+    public int getIdOffre() {
+        return idOffre;
+    }
+
+    public void setIdOffre(int idOffre) {
+        this.idOffre = idOffre;
+    }
 
     private double prix ;
 
     private String DateDepart;
     private int Duree;
+
+    public void setAeroportDepart(String aeroportDepart) {
+        AeroportDepart = aeroportDepart;
+    }
+
+    public void setAeroportArrivee(String aeroportArrivee) {
+        AeroportArrivee = aeroportArrivee;
+    }
+
+    public String getDateDepart() {
+        return DateDepart;
+    }
+
+    public void setDateDepart(String dateDepart) {
+        DateDepart = dateDepart;
+    }
+
+    public int getDuree() {
+        return Duree;
+    }
+
+    public void setDuree(int duree) {
+        Duree = duree;
+    }
 
     public long getIdBillet() {
         return idBillet;
@@ -34,27 +67,20 @@ public class Billet {
         this.idBillet = idBillet;
     }
 
-    public Aeroport getAeroportDepart() {
+
+    public String getAeroportDepart() {
         return AeroportDepart;
     }
 
-    public void setAeroportDepart(Aeroport aeroportDepart) {
-        AeroportDepart = aeroportDepart;
-    }
-
-    public Aeroport getAeroportArrivee() {
+    public String getAeroportArrivee() {
         return AeroportArrivee;
     }
 
-    public void setAeroportArrivee(Aeroport aeroportArrivee) {
-        AeroportArrivee = aeroportArrivee;
-    }
-
-    public Client getIdClient() {
+    public int getIdClient() {
         return idClient;
     }
 
-    public void setIdClient(Client idClient) {
+    public void setIdClient(int idClient) {
         this.idClient = idClient;
     }
 

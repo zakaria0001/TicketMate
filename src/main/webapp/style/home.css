@@ -4,6 +4,7 @@ body {
 }
 @media screen and (min-width: 1080px) {
     * {
+        overflow:hidden;
         margin: 0;
         padding: 0;
         box-sizing: border-box;
@@ -16,11 +17,9 @@ body {
     }
 
     .container {
-
         float:right;
         min-height: 100vh;
-        margin-left: 10%;
-
+        margin-left: 8%;
         font-family: Montserrat, sans-serif;
         color: #191919;
     }
@@ -37,6 +36,7 @@ body {
         position: fixed;
         display: flex;
         left: 0;
+        width:7%;
         z-index: 50;
         justify-content: space-around;
         flex-direction: column;
@@ -46,19 +46,12 @@ body {
 
     section {
         top: 0;
-        width:80%;
+        width:81%;
         color: #191919;
         opacity: 0;
         transition: all ease-in .5s;
         /*justify-content: start;*/
         /*align-items: start;*/
-    }
-
-    section h1 {
-        color: #fff;
-        font-size: 50px;
-        text-transform: uppercase;
-        opacity: 0;
     }
 
     /* Styles applied on trigger */
@@ -69,21 +62,17 @@ body {
         width: 90%;
         padding-left:2%;
         float: right;
-        margin-left: 10%;
+        margin-left: 7%;
         height: 100%;
         z-index: 10;
     }
 
-    section:target h1 {
-        opacity: 0;
-        animation: 2s fadeIn forwards .5s;
-    }
+
 
     #Dashboard {
         background: var(--primary-color);
         height: 100vh;
     }
-
 
     .SearchInput {
         margin: 2% 4%;
@@ -108,10 +97,12 @@ body {
     }
 
     #Locations {
+
         background: var(--primary-color);
     }
 
     #History {
+
         background: var(--primary-color);
     }
 
@@ -125,11 +116,11 @@ body {
         }
     }
 
-    #currentUsername{
+    .currentUsername{
         color:#717171;
         float:right;
-        margin:1%;
         font-size: 20px;
+        margin: 1%;
     }
     a{
         text-decoration: none;
@@ -147,23 +138,24 @@ body {
         height:30px;
         align-content: center;
         align-items: center;
+        text-align: center;
     }
     h5{
         color:#BF2051;
         text-align: center;
     }
     #offerImage{
-        width:700px ;
-        height:100px;
-        border-top-left-radius: 30px;
-        border-top-right-radius: 30px;
+        width: 100%;
+        height: 200px;
         background-size: cover;
     }
     #offerImagesSmall{
         height:100px;
+        width: 100% ;
     }
     #VilleImagesSmall{
         height:100px;
+        width: 100%;
     }
     li{
         list-style: none;
@@ -183,8 +175,21 @@ body {
         align-content: center;
         align-items: center;
         text-align: center;
-        padding:2%;
-    } .cardVille{
+
+    }
+
+    .cardSmall:hover{
+        background-color:#D9D9D9 ;
+        cursor:pointer;
+    }.card:hover{
+        background-color:#D9D9D9 ;
+        cursor:pointer;
+    }
+    .title{
+        margin-top: 5%;
+    }
+
+    .cardVille{
         border: 1px solid ;
         border-radius: 10px;
         margin:1%;
@@ -192,8 +197,15 @@ body {
         align-content: center;
         align-items: center;
         text-align: center;
-        padding:2%;
     }
+      .cardVille:hover{
+          background-color:#D9D9D9 ;
+          cursor:pointer;
+      }
+        .cardVille h5{
+          margin: 2%;
+      }
+
     .box{
         display: inline-flex;
         width: 60%
@@ -210,4 +222,32 @@ body {
         right:1%;
         width: 35%;
     }
+    #History table{
+        width: 95%;
+
+    }
+    #History table td{
+      border-bottom: 3px solid grey;
+        padding: 30px;
+        font-size: 18px;
+        font-family: Bahnschrift;
+    }
+    #History table thead tr{
+      color: #BF2051;
+    }
+    .upperInfo{
+        border: 2px solid;
+        border-radius: 30px;
+        padding:2%;
+        display: inline-flex;
+        width: 100%;
+    }
+    #ProfilePicture{
+        width: 10%;
+        border-radius: 50%;
+    }
+
+
+
+
 }
