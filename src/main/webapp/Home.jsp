@@ -52,7 +52,7 @@
 <%--<input  placeholder="Search For a Destination ....." onkeyup="searchInfo()" type="text"/>--%>
 
 
-        <form name="vinform">
+        <form name="vinform" id="Form">
             <input placeholder="Search For a Destination ....." class="SearchInput" type="text" name="name" onkeyup="searchInfo()">
         </form>
 
@@ -436,7 +436,10 @@
 </script>
 <script src="../style/jquery.js"></script>
 <script>
+    $('#Form').submit(function (evt) {
+        evt.preventDefault();
 
+    });
     var request=new XMLHttpRequest();
     function searchInfo(){
         var name=document.vinform.name.value;

@@ -51,7 +51,7 @@ body {
         width:81%;
         color: #191919;
         opacity: 0;
-        transition: all ease-in .5s;
+        /*transition: all ease-in .5s;*/
         /*justify-content: start;*/
         /*align-items: start;*/
     }
