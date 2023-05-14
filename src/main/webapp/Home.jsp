@@ -354,28 +354,7 @@
             <div class="DetailledInfo">
                 <button id="editButton" onclick="myFunction()"><a>Edit</a></button>
                 <h1>Personal Information : </h1>
-                <table id="UserInfosShow">
-                    <tr>
-                        <td>
-                            <h4>Full Name :</h4>
-                            <h3><%=rsuserInfo.getString("nom_client")%></h3>
-                        </td>
-                        <td>
-                            <h4>Email Adress : </h4>
-                            <h3><%=rsuserInfo.getString("email_client")%></h3>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <h4>Bio :</h4>
-                            <h3><%=rsuserInfo.getString("bio")%></h3>
-                        </td>
-                        <td>
-                            <h4>Password :</h4>
-                            <input  type="password" value="<%=rsuserInfo.getString("password")%>"/>
-                        </td>
-                    </tr>
-                </table>
+
                 <table id="UpdatableTable">
                     <tr>
                         <td>
@@ -414,26 +393,7 @@
     }
 %>
 </html>
-<script>
-    function myFunction() {
-        var x = document.getElementById("UserInfosShow");
-        var y = document.getElementById("UpdatableTable");
 
-        if (x.style.display === "table") {
-            x.style.display="none";
-            y.style.display = "table";
-            y.style.width="90%";
-
-        } else {
-            x.style.display = "table";
-            x.style.width="90%";
-            y.style.display = "none";
-        }
-
-
-    }
-
-</script>
 <script src="../style/jquery.js"></script>
 <script>
     $('#Form').submit(function (evt) {

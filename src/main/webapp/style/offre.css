@@ -26,7 +26,6 @@ nav {
     position: fixed;
     display: flex;
     width:7%;
-
     left: 0;
     z-index: 50;
     justify-content: space-around;
@@ -34,18 +33,20 @@ nav {
     height: 100vh;
     background: var(--secondary-color);
 }
-#currentUsername{
+.currentUsername{
     color:#717171;
     float:right;
-    margin:1%;
     font-size: 20px;
+    margin: 1%;
 }
 #container {
-    width: 70%;
+    width: 80%;
     border:2px solid black;
     float: right;
     margin-left: 10%;
-    margin-top: 5%;
+    margin-top: 1%;
+
+    margin-right: 5%;
     border-radius: 10px;
     padding: 3%;
 }

@@ -76,9 +76,10 @@ nav {
 .currentUsername{
     color:#717171;
     float:right;
-    font-weight: normal;
+
     font-size: 20px;
     margin: 1%;
+    margin-right: 3.5%;
 }
 .cardVille h5{
     margin: 2%;

@@ -30,7 +30,7 @@
     <hr>
     <a href="/logout"><img src="../assets/images/Profil_icon.png"/></a>
 </nav>
-<a href="Login.jsp"><h2 id="currentUsername"><%=session.getAttribute("username")%></h2></a>
+<a href="Login.jsp"><h2 class="currentUsername"><%=session.getAttribute("username")%></h2></a>
     <div id="container">
         <%
             int idCurrentuser =0;
@@ -154,10 +154,6 @@
         var x = document.getElementById("Details");
         if (x.style.display === "none") {
             x.style.display = "block";
-
-                // document.getElementById('Form').submit();
-                // x.style.display = "block";
-
 
         } else {
             x.style.display = "none";
