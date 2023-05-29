@@ -10,7 +10,7 @@
     <title>Login -  TicketMate</title>
 </head>
 <body>
-<section class='BackgroundImage'  >
+<section class='BackgroundImage'>
     <img src="assets/Logo/logo-no-background.png"  class='FullLogo'/>
     <h1 class='subTitle'>Turning travel passions <br/> into travel plans ! </h1>
     <div class='Socials'>
@@ -18,7 +18,6 @@
         <a href="#"><img src="assets/Logo/icons8-instagram-48%201.png" /></a>
         <a href="#"><img src="assets/Logo/icons8-instagram-48%202.png" /></a>
         <a href="#"> <img src="assets/Logo/icons8-twitter-48%201.png" /></a>
-
     </div>
 </section>
 
