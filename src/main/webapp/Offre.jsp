@@ -86,7 +86,8 @@
         <section id="RightP">
             <h1 class=""><%=rsVilleDetail.getString("designation")%></h1>
             <h1 class="card-title" style="color:#BF2051;"><%=rsAgenceDetail.getString("nom_agence")%></h1>
-            <h1 class="card-title" style="color:#BF2051;"><%=rsOffreDetail.getInt("prix_offre")%> DHS / J</h1>
+            <h1 class="card-title"  style="color:#BF2051;"><%=rsOffreDetail.getInt("prix_offre")%> DHS / J</h1>
+            <input hidden id="PrixJournee" value="<%=rsOffreDetail.getInt("prix_offre")%>"/>
             <button id="orderButton" onclick="myFunction()">Check Availability</button>
         </section>
         <br>
@@ -108,7 +109,7 @@
                     <table>
                         <tr>
                             <td><input type="date" name="DateDepart" id="DateDepart" required></td>
-                            <td><input type="number" name="Duree" min="1" required >Jours</td>
+                            <td><input type="number" placeholder="Duration (Days) " min="1"  onchange="onChangeFunction(this.value)" required></td>
                         </tr>
                         <tr>
                             <td><select name="AeroportDepart" required>
@@ -128,8 +129,13 @@
                             </td>
                         </tr>
                         <tr>
-                            <td>Total :</td>
-                            <td><input type="text" name="prix" class="TotalDisplay" value="10000"/></td>
+                            <td>Total ( DHS ):</td>
+                            <td>
+                                <input type="text" name="prix" id="total" class="TotalDisplay" value="0"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><h2 style="color: red"><%=request.getSession().getAttribute("Message")==null?"":request.getSession().getAttribute("Message")%></h2></td>
                         </tr>
                         <tr>
                             <td colspan="2"><button type="submit" class="BookB">Book</button></td>
@@ -159,6 +165,16 @@
             x.style.display = "none";
         }
 
+
+        }
+        function onChangeFunction(value){
+            var totalPrice =0;
+
+        let total = document.getElementById("total");
+        let PrixJournee= document.getElementById("PrixJournee").value;
+
+        totalPrice=PrixJournee * value ;
+        total.value=totalPrice;
 
         }
 </script>

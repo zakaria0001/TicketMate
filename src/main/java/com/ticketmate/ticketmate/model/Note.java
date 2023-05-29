@@ -42,9 +42,14 @@ public class Note {
         DateNote = dateNote;
     }
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "idClientN", referencedColumnName = "idCLient")
-    private Client idClientN;
 
+    private String idClientN;
 
+    public String getIdClientN() {
+        return idClientN;
+    }
+
+    public void setIdClientN(String idClientN) {
+        this.idClientN = idClientN;
+    }
 }

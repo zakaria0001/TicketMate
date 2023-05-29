@@ -66,7 +66,6 @@
                     byte[] imageBytes = outputStream.toByteArray();
                     String base64Images = Base64.getEncoder().encodeToString(imageBytes);
 
-
 //                    Logo Agence Stream
                     Blob blobss = rsAgenceDetailsDest.getBlob("logo");
 
@@ -88,9 +87,7 @@
         <div class="cardVille" >
             <a style="text-decoration: none" href="/Destination/<%=rsDestOffers.getInt("id_offre")%>">
                 <img id="offerImagesSmall" src="data:image/jpg;base64,<%=base64Imagess%>"/>
-
                 <div class="card-bodySmall">
-<%--                    <img id="logoAgence" src="data:image/jpg;base64,<%=base64Imagess%>"/>--%>
                     <h3 class="" style="color:black;float:left;margin-top: 1.2%"><%=rsAgenceDetailsDest.getString("nom_agence")%></h3>
                     <h3 class="card-titleSmall" style="color:#BF2051;float: right"><%=rsDestOffers.getInt("prix_offre")%> DHS / J</h2>
                 </div>
@@ -104,7 +101,7 @@
             }
         }
         if(size==0){ %>
-           <h1 >No Offers here ! </h1>
+           <h1 style="text-align: center" >No Offers here ! </h1>
        <% }%>
 </section>
 </body>
@@ -114,3 +111,6 @@
         }
 %>
 </html>
+<script>
+
+</script>

@@ -33,14 +33,23 @@ public class BilletController {
     }
 
     @RequestMapping(value="/Billet",method = RequestMethod.POST)
-    public ModelAndView saveBillet(Billet billet,RedirectAttributes redirectAttributes) throws IOException, ParseException {
-        Billet savedBillet = repository.save(billet);
-        SimpleDateFormat dateParser = new SimpleDateFormat ("yyyy-MM-dd");
-        String date=savedBillet.getDateDepart();
-        java.util.Date dn = dateParser.parse(date);
-        SimpleDateFormat dateFormatter = new SimpleDateFormat ("yyyy-MM-dd");
-        savedBillet.setDateDepart(dateFormatter.format(dn));
-        return new ModelAndView("redirect:/Home#History");
+    public ModelAndView saveBillet(Billet billet,RedirectAttributes redirectAttributes, HttpServletRequest request) throws IOException, ParseException {
+
+
+        double Total = billet.getPrix();
+        if(Total==0){
+            request.getSession().setAttribute("Message","Verify Your Duration !");
+            return new ModelAndView("redirect:/Destination/"+billet.getIdOffre());
+        }else{
+            Billet savedBillet = repository.save(billet);
+            SimpleDateFormat dateParser = new SimpleDateFormat ("yyyy-MM-dd");
+            String date=savedBillet.getDateDepart();
+            java.util.Date dn = dateParser.parse(date);
+            SimpleDateFormat dateFormatter = new SimpleDateFormat ("yyyy-MM-dd");
+            savedBillet.setDateDepart(dateFormatter.format(dn));
+            return new ModelAndView("redirect:/Home#History");
+
+        }
     }
 
     @RequestMapping(value = "/Billet/{id}",method = {RequestMethod.GET})

@@ -7,8 +7,5 @@ import org.springframework.stereotype.Repository;
 import com.ticketmate.ticketmate.model.Client;
 
 @Repository
-public interface ClientRepository extends JpaRepository<Client,Long> {
-//    @Query("SELECT u FROM Client u WHERE u.EmailClient = ?1")
-//    public Client findByEmail(String email);
-}
+public interface ClientRepository extends JpaRepository<Client,Long> {}
 

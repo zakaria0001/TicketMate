@@ -1,5 +1,8 @@
 package com.ticketmate.ticketmate.controller;
 
+import com.ticketmate.ticketmate.Entity.EmailDetails;
+import com.ticketmate.ticketmate.service.EmailService;
+
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import com.ticketmate.ticketmate.FileUploadUtil;
@@ -44,6 +47,7 @@ public class ClientController {
     private ClientRepository repository;
     @Autowired
     private ClientService clientService;
+    @Autowired private EmailService emailService;
     private static Logger log = LogManager.getLogger(ClientService.class);
 
     @RequestMapping("/")
@@ -59,12 +63,12 @@ public class ClientController {
         return new ModelAndView("Home.jsp");
     }
     @RequestMapping("/users/save")
-    public ModelAndView saveUser(Client client, @RequestParam("image") MultipartFile multipartFile, ModelMap model,RedirectAttributes redirectAttributes,HttpServletRequest request) throws IOException {
-//            String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
-//            client.setPhotos(fileName);
+    public ModelAndView saveUser(Client client, @RequestParam("image") MultipartFile multipartFile, ModelMap model,RedirectAttributes redirectAttributes,HttpServletRequest request,EmailDetails details) throws IOException {
             repository.save(client);
-            String FullName= client.getEmailClient();
-            request.getSession().setAttribute("reqParam", FullName);
+            String Email= client.getEmailClient();
+            String FullName= client.getNomClient();
+            emailService.sendSimpleMail(Email,FullName);
+            request.getSession().setAttribute("reqParam", Email);
         return new ModelAndView("redirect:/Home#Dashboard");
     }
 

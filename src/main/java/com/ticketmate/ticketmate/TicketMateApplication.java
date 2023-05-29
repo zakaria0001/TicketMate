@@ -12,7 +12,6 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 @ComponentScan(basePackages = {"com.ticketmate.ticketmate.*"})
 @SpringBootApplication(exclude = { SecurityAutoConfiguration.class })
 
-
 public class TicketMateApplication {
 
     public static void main(String[] args) {

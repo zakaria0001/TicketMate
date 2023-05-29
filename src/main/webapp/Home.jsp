@@ -2,11 +2,10 @@
 <%@ page import="java.io.InputStream" %>
 <%@ page import="java.io.ByteArrayOutputStream" %>
 <%@ page import="java.util.Base64" %>
-<%@ page import="javax.xml.transform.Result" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!doctype html>
 <html lang="en">
-<% if(request.getSession().getAttribute("reqParam")!=null){
+<% if(request.getSession().getAttribute("reqParam")!=null ){
     int idCurrentUser =0;
 %>
 <head>
@@ -53,7 +52,7 @@
 
 
         <form name="vinform" id="Form">
-            <input placeholder="Search For a Destination ....." class="SearchInput" type="text" name="name" onkeyup="searchInfo()">
+            <input placeholder="Search For a Destination ....."  id="InputS"class="SearchInput" type="text" name="name" onkeyup="searchInfo()">
         </form>
 
         <div id="mylocation"></div>
@@ -79,7 +78,7 @@
                 session.setAttribute("username",rsusername.getString("nom_client"));
         %>
 
-                    <a href="/logout">   <h2 class="currentUsername"><%=rsusername.getString("nom_client")%></h2></a>
+                    <a href="#Profile">   <h2 class="currentUsername"><%=rsusername.getString("nom_client")%></h2></a>
         <%
             }
                 }catch (SQLException e) {
@@ -192,7 +191,16 @@
             <div id='calendar' ></div>
         </div>
         <div id="Notes">
-            <h2 style="color:black;background-color: white;border-top-left-radius: 18px;border-top-right-radius: 18px;text-align: center">Notes : <label style="font-weight: bolder;float: right;margin-right: 1%">+</label></h2>
+
+            <h2 id="AddNotesB"style="color:black;background-color: white;border-top-left-radius: 18px;border-top-right-radius: 18px;text-align: center">Notes : <label style="font-weight: bolder;float: right;margin-right: 1%">+</label></h2>
+            <div id="NoteInput" >
+                <form action="/Note" method="post"style="display:inline-flex;width: 100%" >
+                    <input type="text" name="Contenu" style="width: 100%" placeholder="Your Note Here ! " required>
+                    <input type="text" name="idClientN" value="<%=idCurrentUser%>" hidden >
+                    <button type="submit">Add</button>
+                </form>
+            </div>
+
             <%
                 PreparedStatement psNotes = connection.prepareStatement("select * from notes where id_clientn=? and DATE(date_note) >= CURRENT_DATE() LIMIT 2 ");
                 psNotes.setInt(1,idCurrentUser);
@@ -201,8 +209,8 @@
                 while(rsNotes.next()){
             %>
                 <ul>
-                    <li><%=rsNotes.getString("contenu")%><input style="float: right;margin-top: 1%;margin-right: 2%" type="checkbox"/>
-                    <br>
+                    <li style="width: 100%"><%=rsNotes.getString("contenu")%><b><a   href="/Note/<%=rsNotes.getInt("id_note")%>">Delete </a></b>
+                        <br>
                         <label style="font-size: 10px"><%=rsNotes.getString("date_note")%></label>
                     </li>
                 </ul>
@@ -212,7 +220,7 @@
         </div>
     </section>
     <section id= 'Locations'>
-        <a href="Login.jsp">   <h2 class="currentUsername"><%=session.getAttribute("username")%></h2></a>
+        <a href="#Profile">   <h2 class="currentUsername"><%=session.getAttribute("username")%></h2></a>
 
         <h2 class="title">Our Destinations :</h2>
         <%
@@ -251,7 +259,7 @@
     </section>
 
     <section id= 'History'>
-        <a href="Login.jsp"><h2 class="currentUsername"><%=session.getAttribute("username")%></h2></a>
+        <a href="#Profile"><h2 class="currentUsername"><%=session.getAttribute("username")%></h2></a>
         <h2 class="title">History :</h2>
 
         <table>
@@ -315,7 +323,7 @@
     </section>
 
     <section id= 'Profile'>
-        <a href="Login.jsp"><h2 class="currentUsername"><%=session.getAttribute("username")%></h2></a>
+        <a href="#Profile"><h2 class="currentUsername"><%=session.getAttribute("username")%></h2></a>
         <%
 
             String userInfo = "select * from client c where email_client=?";
@@ -396,8 +404,19 @@
 
 <script src="../style/jquery.js"></script>
 <script>
+ var notevalues = $('#NoteInput').val();
     $('#Form').submit(function (evt) {
         evt.preventDefault();
+    });
+
+
+    $('#AddNotesB').click(function (evt) {
+
+        if(notevalues=="" || notevalues==" "){
+            $('#NoteInput').toggle();
+        }else{
+            alert("Not Null")
+        }
 
     });
     var request=new XMLHttpRequest();
@@ -411,7 +430,7 @@
                     var val=request.responseText;
                     document.getElementById('mylocation').innerHTML=val;
                 }
-            }//end of function
+            }
             request.open("GET",url,true);
             request.send();
         }catch(e){alert("Unable to connect to server");}

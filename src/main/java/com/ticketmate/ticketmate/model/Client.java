@@ -95,15 +95,7 @@ public class Client {
         Logo = logo;
     }
 
-    public Note getIdClientN() {
-        return idClientN;
-    }
 
-    public void setIdClientN(Note idClientN) {
-        this.idClientN = idClientN;
-    }
 
-    @OneToOne(mappedBy = "idClientN")
-    private Note idClientN;
 }
 
